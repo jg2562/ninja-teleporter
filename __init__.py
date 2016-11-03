@@ -53,7 +53,18 @@ class Teliporta(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)         
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-
+# Zues (Chaos) Player
+class Zues(Person):
+        def __init__(self, name, health, cooldown, pos):
+            super(Warrior, self).__init__(name, health, cooldown, pos)         
+            self._attack_area = getAttackArea()
+        def getBoltCords():
+            return [random.randint(0, self._size),random.randint(0, self._size)]
+        def getAttackArea():
+            attack_area = [[0]*5 for i in range(5)]
+            Cords = getBoltCords()
+            attack_area[Cords[0],Cords[1]] = 50
+            return attack_area
 # Game
 class Game():
     def __init__(self, size):
@@ -72,6 +83,7 @@ class Game():
         pass
     def run(self):
         pass
+    # prolly gunna use this to place characters on board
     def getRandCords(self):
         return [random.randint(0, self._size),random.randint(0, self._size),random.randint(0, 4)]
 
