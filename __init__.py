@@ -1,3 +1,4 @@
+import random
 '''
 Lazy mans Idear box
 -maybe add random skills?
@@ -20,16 +21,15 @@ Lazy mans Idear box
 '''
 # Person Ojbect for our Base Player
 class Person(object):
-    def __init__(self, name, health, cooldown, pos, direction):
+    def __init__(self, name, health, cooldown, pos):
         self._name = name               # name of the player / baller
         self._health = health           # health of the player / baller
         self._cooldown = cooldown       # Cooldown time in terms of turns
-        self._pos = pos                 # [x-cord, y-cord]
-        self._dir = direction;          # 0 = north, 1 = east, 2 = south, 3 = north
+        self._pos = pos                 # [x-cord, y-cord, direction]0 = north, 1 = east, 2 = south, 3 = north
 # Warrrior Player
 class Warrior(Person):
-        def __init__(self, name, health, cooldown, pos, direction):
-            super(Warrior, self).__init__(name, health, cooldown, pos, direction)
+        def __init__(self, name, health, cooldown, pos):
+            super(Warrior, self).__init__(name, health, cooldown, pos)
 
             #[2, 3, 2] 3 damage to guy directly infront of the player, 2 to guys on either side
             #[1, 0, 1] 1 damage to guy left / right of the player
@@ -38,43 +38,42 @@ class Warrior(Person):
 
 # Baller Player - aka Josh
 class Baller(Person):
-        def __init__(self, name, health, cooldown, pos, direction):
-            super(Warrior, self).__init__(name, health, cooldown, pos, direction)        
+        def __init__(self, name, health, cooldown, pos):
+            super(Warrior, self).__init__(name, health, cooldown, pos)        
             self._attack_area = [[0, 1, 4, 1, 0],[0, 1, 4, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
 # Child Player - aka Jack lol jk <3 but an child that follows and annoys would be funny kinda like a zombie
 class Child(Person):
-        def __init__(self, name, health, cooldown, pos, direction):
-            super(Warrior, self).__init__(name, health, cooldown, pos, direction)      
+        def __init__(self, name, health, cooldown, pos):
+            super(Warrior, self).__init__(name, health, cooldown, pos)      
             self._attack_area = [[1, 1, 1, 1, 1],[1, 1, 1, 1, 1], [1, 1, 1, 1, 1],[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
 
 # Teliporta Player
 class Teliporta(Person):
-        def __init__(self, name, health, cooldown, pos, direction):
-            super(Warrior, self).__init__(name, health, cooldown, pos, direction)         
+        def __init__(self, name, health, cooldown, pos):
+            super(Warrior, self).__init__(name, health, cooldown, pos)         
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
 # Game
 class Game():
     def __init__(self, size):
+        self._size = size
         self._board = []
-        buildBoard(size)
-        buildTraps()
-        placePlayers()
-        run()
-    def buildBoard(size):
-        for i in range(0, len(size)):
-            board.append([])
-            for j in range(0, len(size)):
-                board[i][j] = ' '
-    def buildTraps():
+        self.buildBoard(size)
+        self.buildTraps()
+        self.placePlayers()
+        self.run()
+    def buildBoard(self, size):
+        self._board = [[0]*self._size for i in range(self._size)]
+        
+    def buildTraps(self):
         pass
-    def placePlayers():
+    def placePlayers(self):
         pass
-    def run():
+    def run(self):
         pass
+    def getRandCords(self):
+        return [random.randint(0, self._size),random.randint(0, self._size),random.randint(0, 4)]
 
 G = Game(10)
-x = Warrior("jef", 100, 4, [0,0], 0)
-
-print(x._attack_area)
+print(G.getRandCords())
