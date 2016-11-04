@@ -29,6 +29,11 @@ class Person(object):
         self._cooldown = cooldown       # Cooldown time in terms of turns
         self._pos = pos                 # [x-cord, y-cord, z-cord, direction]0 = north, 1 = east, 2 = south, 3 = north
 
+    def damage(self, damage):
+        self._health -= damage
+        if self._health < 0:
+            self._health = 0
+
 # Warrrior Player
 class Warrior(Person):
         def __init__(self, name, health, cooldown, pos):
@@ -38,6 +43,8 @@ class Warrior(Person):
             #[1, 0, 1] 1 damage to guy left / right of the player
             #[0, 0, 0]
             self._attack_area = [[0, 0, .5, 0, 0],[0, 2, 3, 2, 0],[.5, 1, 0, 1, .5],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+
+            
 
 # Baller Player - aka Josh
 class Baller(Person):
@@ -76,12 +83,9 @@ class Game():
     def __init__(self, size):
         self._size = (size, size, size)
         self._board = {}
-        self.buildBoard(size)
         self.buildTraps()
         self.placePlayers()
         self.run()
-    def buildBoard(self, size):
-        self._board = [[None]*self._size for i in range(self._size)]
 
     def buildTraps(self):
         pass
@@ -91,18 +95,27 @@ class Game():
         pass
     # prolly gunna use this to place characters on board
     def getRandCords(self):
-        return [random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4)]
+        return (random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4))
 
-    def _setPlayer(self, pos, player):
+    def _setPerson(self, pos, player):
         self._board[(pos[0], pos[1], pos[2])] = player
 
     def _getPlayer(self, pos):
         return self._board[(pos[0], pos[1], pos[2])]
 
-    def movePlayer(self, player, dpos):
-        pos = player._pos
-        self._board[(pos[0], pos[1], pos[2])] = player
+    def movePerson(self, person, dpos):
+        pos = person._pos
+        new_pos = (pos[0] + dpos[0], pos[1] + dpos[1], pos[2] + dpos[2])
+        self._setPerson(self, new_pos)
+
+    def attackPerson(self, damage, pos):
+        person = _getPlayer(pos)
+        if (person is None):
+            return
+
+        person.damage(attack)
 
 
+                     
 G = Game(10)
 print(G.getRandCords())
