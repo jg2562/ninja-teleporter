@@ -73,8 +73,8 @@ class Teliporta(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-# Zues (Chaos) Player
-class Zues(Person):
+# Zeus (Chaos) Player
+class Zeus(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = getAttackArea()
@@ -137,12 +137,6 @@ class Game():
         for col in range(height):
             for row in range(width):
                 self.attackPerson(area[col][row], (pos[0] + (row - width/2), pos[1] + (col - height/2), 0)
-                                   
-
-        
-        
-        
-
 
                      
 G = Game(10)
