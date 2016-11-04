@@ -73,6 +73,8 @@ class Teliporta(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+# Idea for Zeus, have two types of attacks one bolt or a random amount with the damage spread out randomly over the bolts
+# Also as it stands, Zeus calculates the bold O' deth and that cord will always be hit relative to zeus
 # Zeus (Chaos) Player
 class Zeus(Person):
         def __init__(self, name, health, cooldown, pos):
@@ -81,7 +83,6 @@ class Zeus(Person):
 
         def getBoltCords(self):
             return [random.randint(0, self._size),random.randint(0, self._size)]
-
 
         def getAttackArea(self):
             attack_area = [[0]*5 for i in range(5)]
