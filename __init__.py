@@ -108,18 +108,22 @@ class Game():
     def getRandCords(self):
         return (random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4))
 
+    # Sets the player position
     def _setPerson(self, pos, player):
         
         self._board[player.getPos()] = player
 
+    # Get the player at the position
     def _getPlayer(self, pos):
         return self._board[(pos[0], pos[1], pos[2])]
 
+    # Moves person dpos from its current position
     def movePerson(self, person, dpos):
         pos = person.getPos()
         new_pos = (pos[0] + dpos[0], pos[1] + dpos[1], pos[2] + dpos[2])
         self._setPerson(self, new_pos)
 
+    # Attacks the person at the position
     def attackPerson(self, damage, pos):
         person = self._getPlayer(pos)
         if (person is None):
@@ -127,6 +131,7 @@ class Game():
 
         person.damage(attack)
 
+    # Causes the player at pos to attack in his area
     def attackArea(self, pos):
         person = _getPerson(pos)
         if person is None:
