@@ -97,7 +97,7 @@ class Game():
         self._board[(pos[0], pos[1], pos[2])] = player
 
     def _getPlayer(self, pos):
-        self.
+        return self._board[(pos[0], pos[1], pos[2])]
 
     def movePlayer(self, player, dpos):
         pos = player._pos
