@@ -51,6 +51,9 @@ class Warrior(Person):
             #[0, 0, 0]
             self._attack_area = [[0, 0, .5, 0, 0],[0, 2, 3, 2, 0],[.5, 1, 0, 1, .5],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
+        def getAttackArea():
+            return self._attack_area
+
             
 
 # Baller Player - aka Josh
@@ -85,6 +88,7 @@ class Zues(Person):
             Cords = getBoltCords()
             attack_area[Cords[0],Cords[1]] = 50
             return attack_area
+        
 # Game
 class Game():
     def __init__(self, size):
@@ -119,9 +123,25 @@ class Game():
     def attackPerson(self, damage, pos):
         person = self._getPlayer(pos)
         if (person is None):
-            return
+            return None
 
         person.damage(attack)
+
+    def attackArea(self, pos):
+        person = _getPerson(pos)
+        if person is None:
+            return
+        area = person.getAttackArea()
+        height = len(area)
+        width = len(area[0])
+        for col in range(height):
+            for row in range(width):
+                self.attackPerson(area[col][row], (pos[0] + (row - width/2), pos[1] + (col - height/2), 0)
+                                   
+
+        
+        
+        
 
 
                      
