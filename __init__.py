@@ -18,6 +18,8 @@ Lazy mans Idear box
 -ignore lab work and do this
 -get everyone to give me $20 to not do lab so I can make $$$
 -https://www.youtube.com/watch?v=zQrdKtPJxI0
+
+-How dead were you when you wrote this?
 '''
 # Person Ojbect for our Base Player
 class Person(object):
@@ -25,7 +27,8 @@ class Person(object):
         self._name = name               # name of the player / baller
         self._health = health           # health of the player / baller
         self._cooldown = cooldown       # Cooldown time in terms of turns
-        self._pos = pos                 # [x-cord, y-cord, direction]0 = north, 1 = east, 2 = south, 3 = north
+        self._pos = pos                 # [x-cord, y-cord, z-cord, direction]0 = north, 1 = east, 2 = south, 3 = north
+
 # Warrrior Player
 class Warrior(Person):
         def __init__(self, name, health, cooldown, pos):
@@ -33,34 +36,37 @@ class Warrior(Person):
 
             #[2, 3, 2] 3 damage to guy directly infront of the player, 2 to guys on either side
             #[1, 0, 1] 1 damage to guy left / right of the player
-            #[0, 0, 0]           
+            #[0, 0, 0]
             self._attack_area = [[0, 0, .5, 0, 0],[0, 2, 3, 2, 0],[.5, 1, 0, 1, .5],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
 # Baller Player - aka Josh
 class Baller(Person):
         def __init__(self, name, health, cooldown, pos):
-            super(Warrior, self).__init__(name, health, cooldown, pos)        
+            super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 1, 4, 1, 0],[0, 1, 4, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
 # Child Player - aka Jack lol jk <3 but an child that follows and annoys would be funny kinda like a zombie
 class Child(Person):
         def __init__(self, name, health, cooldown, pos):
-            super(Warrior, self).__init__(name, health, cooldown, pos)      
+            super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[1, 1, 1, 1, 1],[1, 1, 1, 1, 1], [1, 1, 1, 1, 1],[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]
 
 # Teliporta Player
 class Teliporta(Person):
         def __init__(self, name, health, cooldown, pos):
-            super(Warrior, self).__init__(name, health, cooldown, pos)         
+            super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 # Zues (Chaos) Player
 class Zues(Person):
         def __init__(self, name, health, cooldown, pos):
-            super(Warrior, self).__init__(name, health, cooldown, pos)         
+            super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = getAttackArea()
-        def getBoltCords():
+
+        def getBoltCords(self):
             return [random.randint(0, self._size),random.randint(0, self._size)]
-        def getAttackArea():
+
+
+        def getAttackArea(self):
             attack_area = [[0]*5 for i in range(5)]
             Cords = getBoltCords()
             attack_area[Cords[0],Cords[1]] = 50
@@ -75,8 +81,8 @@ class Game():
         self.placePlayers()
         self.run()
     def buildBoard(self, size):
-        self._board = [[0]*self._size for i in range(self._size)]
-        
+        self._board = [[None]*self._size for i in range(self._size)]
+
     def buildTraps(self):
         pass
     def placePlayers(self):
@@ -85,7 +91,7 @@ class Game():
         pass
     # prolly gunna use this to place characters on board
     def getRandCords(self):
-        return [random.randint(0, self._size),random.randint(0, self._size),random.randint(0, 4)]
+        return [random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4)]
 
 G = Game(10)
 print(G.getRandCords())
