@@ -74,8 +74,8 @@ class Zues(Person):
 # Game
 class Game():
     def __init__(self, size):
-        self._size = size
-        self._board = []
+        self._size = (size, size, size)
+        self._board = {}
         self.buildBoard(size)
         self.buildTraps()
         self.placePlayers()
@@ -92,6 +92,17 @@ class Game():
     # prolly gunna use this to place characters on board
     def getRandCords(self):
         return [random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4)]
+
+    def _setPlayer(self, pos, player):
+        self._board[(pos[0], pos[1], pos[2])] = player
+
+    def _getPlayer(self, pos):
+        self.
+
+    def movePlayer(self, player, dpos):
+        pos = player._pos
+        self._board[(pos[0], pos[1], pos[2])] = player
+
 
 G = Game(10)
 print(G.getRandCords())
