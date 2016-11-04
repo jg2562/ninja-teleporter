@@ -33,6 +33,13 @@ class Person(object):
         self._health -= damage
         if self._health < 0:
             self._health = 0
+        
+    def getPos(self):
+        return (self._pos[0], self._pos[1], self._pos[2])
+
+    def setPos(self, pos):
+        self._pos = (pos[0], pos[1], pos[2], self._pos[3])
+        
 
 # Warrrior Player
 class Warrior(Person):
@@ -98,18 +105,19 @@ class Game():
         return (random.randint(0, self._size),random.randint(0, self._size), 0, random.randint(0, 4))
 
     def _setPerson(self, pos, player):
-        self._board[(pos[0], pos[1], pos[2])] = player
+        
+        self._board[player.getPos()] = player
 
     def _getPlayer(self, pos):
         return self._board[(pos[0], pos[1], pos[2])]
 
     def movePerson(self, person, dpos):
-        pos = person._pos
+        pos = person.getPos()
         new_pos = (pos[0] + dpos[0], pos[1] + dpos[1], pos[2] + dpos[2])
         self._setPerson(self, new_pos)
 
     def attackPerson(self, damage, pos):
-        person = _getPlayer(pos)
+        person = self._getPlayer(pos)
         if (person is None):
             return
 
