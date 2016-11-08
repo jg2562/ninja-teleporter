@@ -1,10 +1,10 @@
 import random
 '''
-Lazy mans Idear box
+Lazy man's idear box
 -maybe add random skills?
--dagageTypes
+-damageTypes
 -gitgood
--get board obsticals
+-get board obstacles
 -get turn base part rolling
 -questline?
 -play characters and balance them
@@ -12,6 +12,7 @@ Lazy mans Idear box
 -watch Nakai own this thing when he inevitably joins in
 -i put the above comment in at 3.11am I bet by 7pm he will be added to this repo
 -if he doesnt im deleting this and the above
+-Nakai appreciates the above
 -are you still reading these
 -get sprites working
 -find someone who can make not ass sprites
@@ -21,7 +22,7 @@ Lazy mans Idear box
 
 -How dead were you when you wrote this?
 '''
-# Person Ojbect for our Base Player
+# Person Object for our Base Player
 class Person(object):
     def __init__(self, name, health, cooldown, pos):
         self._name = name               # name of the player / baller
@@ -41,12 +42,12 @@ class Person(object):
         self._pos = (pos[0], pos[1], pos[2], self._pos[3])
         
 
-# Warrrior Player
+# Warrior Player
 class Warrior(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)
 
-            #[2, 3, 2] 3 damage to guy directly infront of the player, 2 to guys on either side
+            #[2, 3, 2] 3 damage to guy directly in front of the player, 2 to guys on either side
             #[1, 0, 1] 1 damage to guy left / right of the player
             #[0, 0, 0]
             self._attack_area = [[0, 0, .5, 0, 0],[0, 2, 3, 2, 0],[.5, 1, 0, 1, .5],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
@@ -62,7 +63,7 @@ class Baller(Person):
             super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 1, 4, 1, 0],[0, 1, 4, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
-# Child Player - aka Jack lol jk <3 but an child that follows and annoys would be funny kinda like a zombie
+# Child Player - aka Jack lol jk <3 but a child that follows and annoys would be funny kinda like a zombie
 class Child(Person):
         def __init__(self, name, health, cooldown, pos):
             super(Warrior, self).__init__(name, health, cooldown, pos)
@@ -74,7 +75,7 @@ class Teliporta(Person):
             super(Warrior, self).__init__(name, health, cooldown, pos)
             self._attack_area = [[0, 0, 0, 0, 0],[0, 1, 8, 1, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 # Idea for Zeus, have two types of attacks one bolt or a random amount with the damage spread out randomly over the bolts
-# Also as it stands, Zeus calculates the bold O' deth and that cord will always be hit relative to zeus
+# Also as it stands, Zeus calculates the bolt O'death and that cord will always be hit relative to zeus
 # Zeus (Chaos) Player
 class Zeus(Person):
         def __init__(self, name, health, cooldown, pos):
