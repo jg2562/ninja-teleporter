@@ -1,1 +1,6 @@
-https://github.com/kittykatattack/learningPixi#installingpixiwithgit
+Learn Pixi Tutorial:
+    https://github.com/kittykatattack/learningPixi#installingpixiwithgit
+
+Latest JS reference:
+    http://es6-features.org/#ClassInheritance
+    Particularly look at the class section
