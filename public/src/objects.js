@@ -1,4 +1,5 @@
 console.log("This is an object... i think");
+// Author -Grant 
 function Person(name,health,cooldown,pos){
     this.name = name;
     this.health = health;
