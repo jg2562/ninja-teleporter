@@ -19,7 +19,7 @@ Lazy man's idear box
 -ignore lab work and do this
 -get everyone to give me $20 to not do lab so I can make $$$
 -https://www.youtube.com/watch?v=zQrdKtPJxI0
-
+-what is this even?
 -How dead were you when you wrote this?
 '''
 # Person Object for our Base Player
@@ -34,13 +34,13 @@ class Person(object):
         self._health -= damage
         if self._health < 0:
             self._health = 0
-        
+
     def getPos(self):
         return (self._pos[0], self._pos[1], self._pos[2])
 
     def setPos(self, pos):
         self._pos = (pos[0], pos[1], pos[2], self._pos[3])
-        
+
 
 # Warrior Player
 class Warrior(Person):
@@ -55,7 +55,7 @@ class Warrior(Person):
         def getAttackArea():
             return self._attack_area
 
-            
+
 
 # Baller Player - aka Josh
 class Baller(Person):
@@ -90,7 +90,7 @@ class Zeus(Person):
             Cords = getBoltCords()
             attack_area[Cords[0],Cords[1]] = 50
             return attack_area
-        
+
 # Game
 class Game():
     def __init__(self, size):
@@ -112,7 +112,7 @@ class Game():
 
     # Sets the player position
     def _setPerson(self, pos, player):
-        
+
         self._board[player.getPos()] = player
 
     # Get the player at the position
@@ -145,6 +145,6 @@ class Game():
             for row in range(width):
                 self.attackPerson(area[col][row], (pos[0] + (row - width/2), pos[1] + (col - height/2), 0)
 
-                     
+
 G = Game(10)
 print(G.getRandCords())
